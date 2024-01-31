@@ -2,7 +2,7 @@
 
 //define  game variables
 const min=0;
-const max =21;
+const max =20;
 const gridSize = 20;
 let gameInterval;
 let gameSpeedDelay = 200;
@@ -14,9 +14,10 @@ const score = document.getElementById('score');
 //const min_food = 21;
 let snake = [{x:10,y:10}];
 //let snake = [{x:arbitrary_int(min,max),y:arbitrary_int(min,max)}];// use arbitrary location later using random
-let food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
+//let food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
 let direction = 'right';
-//let food = generateFood();
+//
+let food = generateFood();
 //Define html variables
 //console.log(snake,food);
 const board = document.getElementById('game-board');
@@ -28,10 +29,12 @@ let highScore = 0;
 
 
 //console.log(board);
+/*
 function arbitrary_int(min,max)
 {    
-    return Math.floor(Math.random() * (max - min) + min); 
+    return Math.floor(Math.random() * (max - min)); 
 }
+*/
 function draw()
 {
     board.innerHTML = '';
@@ -72,7 +75,7 @@ function drawFood()
     board.appendChild(foodElement);
     }
 }
-/*
+
 
 // Generate Food
 
@@ -82,7 +85,7 @@ function generateFood()
     const y = Math.floor(Math.random() * (gridSize) + 1);
     return {x,y};
 }
-*/
+
 
 // snake motion
 
@@ -108,9 +111,9 @@ function moveSnake()
     //snake.pop();
     if(head.x === food.x && head.y === food.y )
     {
-       food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
+       food = generateFood();
        increaseSpeed();
-       console.log(head); 
+       //console.log(head); 
        clearInterval(gameInterval);
        gameInterval = setInterval(() => {
             moveSnake();
@@ -220,7 +223,7 @@ resetGame();
         updateHighScore();
         stopGame();
         snake = [{x:10,y:10}];
-        food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
+        food = generateFood();
         direction='right';
         gameSpeedDelay=200;
         updateScore();
