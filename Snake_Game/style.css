@@ -98,7 +98,7 @@ justify-content: center;
 
 .snake
 {
-    border: #414141 1px solid;
+    border: #414141 1px dotted;
 }
 
 .food
