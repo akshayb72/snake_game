@@ -45,11 +45,14 @@ function draw()
 
 function drawSnake()
 {
+
 snake.forEach((segment) => {
     const snakeElement = createGameElement('div','snake');
+   // console.log(snakeElement,segment);
     SetPosition(snakeElement,segment);
     board.appendChild(snakeElement);
 });
+    
 }
 
 // Create an snake funct or food cube function
@@ -69,7 +72,7 @@ function SetPosition(element, position)
 
 function drawFood()
 {
-    if(gameStarted){
+    if (gameStarted) {
     const foodElement= createGameElement('div','food');
     SetPosition(foodElement,food);
     board.appendChild(foodElement);
@@ -107,20 +110,22 @@ function moveSnake()
             break;  
     }
     snake.unshift(head);
-
     //snake.pop();
     if(head.x === food.x && head.y === food.y )
     {
        food = generateFood();
        increaseSpeed();
        //console.log(head); 
+       //console.log(gameSpeedDelay);
        clearInterval(gameInterval);
+
        gameInterval = setInterval(() => {
             moveSnake();
             checkCollision();
             draw();
        },gameSpeedDelay);
     }
+    
     else
     {
         snake.pop();
@@ -130,23 +135,34 @@ function moveSnake()
 
 function startGame()
 {
+gameSpeedDelay =200;
 gameStarted=true; // keep track to see if the game is running
 instructionText.style.display = 'none'; 
 logo.style.display = 'none';
+
 gameInterval = setInterval(() => {
     moveSnake();
-   checkCollision();
+    checkCollision();
     draw();
 },gameSpeedDelay);
+
+//console.log(gameInterval);
+//console.log(gameSpeedDelay);
 }
 
 //Key Press Event Listener
 
 function handleKeyPress(event)
 {
-    if((!gameStarted && event.code === 'Space')||(!gameStarted && event.key === ' '))
+    if(!gameStarted && instructionText.textContent==="Paused" && event.code === 'Space')
+    
     {
         startGame();
+    }
+    else if((!gameStarted && event.code === 'Space')||(!gameStarted && event.key === ' '))
+    {
+        startGame();
+        console.log(gameSpeedDelay);
     }
     else
     {
@@ -164,10 +180,23 @@ function handleKeyPress(event)
             case 'ArrowRight':
                 direction ='right';
                 break;
+            case 'Escape':
+                onPause();
+              //  console.log(event.key)
+                break;
 
         }
     }
+
+//console.log(event);
 }
+/*
+document.getElementById('pause').onclick = function()
+{
+    onPause();
+}
+
+*/
 //Testing
 //draw();
 /*
@@ -177,6 +206,7 @@ setInterval(() => {
 },200);
 */
 document.addEventListener('keydown',handleKeyPress);
+document.addEventListener('onclick',handleKeyPress);
 
 function increaseSpeed()
 {
@@ -211,7 +241,7 @@ function checkCollision()
         {
             if(head.x === snake[i].x && head.y === snake[i].y) 
             {
-resetGame();
+            resetGame();
             }
             
         }
@@ -227,6 +257,8 @@ resetGame();
         direction='right';
         gameSpeedDelay=200;
         updateScore();
+        clearInterval(gameInterval);
+        console.log(gameInterval);
     }
 
     function updateScore()
@@ -253,5 +285,13 @@ logo.style.display="block";
         highScore =currentScore;
         highScoreText.textContent = highScore.toString().padStart(3,'0');
     }
-    highScoreText.style.display = 'block';
+  
+    }
+
+    function onPause(event)
+    {
+             clearInterval(gameInterval);
+            gameStarted = false;
+            instructionText.textContent = 'Paused';
+            instructionText.style.display = 'block';   
     }
