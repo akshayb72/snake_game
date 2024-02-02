@@ -240,6 +240,7 @@ resetGame();
     {
 clearInterval(gameInterval);
 gameStarted=false;
+instructionText.textContent="Press Spacebar To Start The Game";
 instructionText.style.display="block";
 logo.style.display="block";
     }
