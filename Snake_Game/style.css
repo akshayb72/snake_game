@@ -47,13 +47,15 @@ body,.snake
 #instruction-text
 {
     position: absolute;
-    top:64%;
     color:#333;
     width:300px;
     text-align: center;
     text-transform: capitalize;
-    padding:30px;
-    margin: 0;
+    padding: 25px;
+    margin-bottom: auto;
+    margin-top: 290px;
+    margin-left: 70px;
+    margin-right: 20px;
 }
 
 .scores
@@ -80,9 +82,23 @@ justify-content: space-between;
     background-color: #c4cfa3;
 }
 
+#snek
+{
+justify-content: center;
+
+}
+
+#logo
+{
+    margin-top: 60px;
+    margin-bottom: 50px;
+    margin-left: 120px;
+    margin-right: 0px;
+}
+
 .snake
 {
-    border: #414141 1px dotted;
+    border: #414141 1px solid;
 }
 
 .food
@@ -91,13 +107,14 @@ justify-content: space-between;
     border: #999 5px solid;
 }
 
+
 #logo 
 {
     position: absolute;
 }
-
 @font-face
 {
     font-family: vt323;
     src: url(VT323-Regular.ttf);
 }
+
