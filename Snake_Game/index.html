@@ -7,23 +7,30 @@
     <script src="script.js" defer></script>
     </head>
 <body>
-<div>
+<div id="main">
+    <div id="snek">
+        <img id ="logo"src="snake-game-ai-gen.png" alt="snake-logo">
+        <h1 id="instruction-text">Press Spacebar To Start The Game</h1>
+        </div>
+    <div>
     <div class="scores">
         <h1 id="score">000</h1>
+        <h1 id="globalScore">000</h1>
         <h1 id="highScore">000</h1>
     </div>
-    <div class="game-border-1">
+        <div class="game-border-1">
         <div class="game-border-2">
-            <div class="game-border-3">
-                <div id="game-board"></div>
-            </div>
+        <div class="game-border-3">    
+        <div id="game-board">                  
+        </div>
+        </div>
         </div>    
-    </div>
-    </div>
+        </div>
+        <div class="sButton">
+            <input type="button" class="bButton" value="Play" onclick="startGame();">
+            <input type="button" class="bButton" value="Pause" onclick="onPause();" > 
+            </div>
+        </div>
 </div>
-
-<h1 id="instruction-text">Press Spacebar To Start The Game</h1>
-<img id ="logo"src="snake-game-ai-gen.png" alt="snake-logo">
-
 </body>
 </html>
