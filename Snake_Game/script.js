@@ -10,6 +10,7 @@ let gameStarted= false;
 const instructionText = document.getElementById('instruction-text');
 const logo = document.getElementById('logo');
 const score = document.getElementById('score');
+
 //const max_food =10;
 //const min_food = 21;
 let snake = [{x:10,y:10}];
@@ -17,6 +18,7 @@ let snake = [{x:10,y:10}];
 //let food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
 let direction = 'right';
 //
+let nextDirection = direction;
 let food = generateFood();
 //Define html variables
 //console.log(snake,food);
@@ -94,7 +96,9 @@ function generateFood()
 
 function moveSnake()
 {
+  
     const head = {...snake[0]};
+    direction = nextDirection;
     switch (direction) {
         case 'up':
             head.y--;
@@ -166,20 +170,19 @@ function handleKeyPress(event)
     }
     else
     {
-        switch(event.key)
-        {
+        switch (event.key) {
             case 'ArrowUp':
-                direction ='up';
-                break;
+            if (direction !== 'down') nextDirection = 'up';
+            break;
             case 'ArrowDown':
-                direction ='down';
-                break;
+            if (direction !== 'up') nextDirection = 'down';
+            break;
             case 'ArrowLeft':
-                direction ='left';
-                break;
+            if (direction !== 'right') nextDirection = 'left';
+            break;
             case 'ArrowRight':
-                direction ='right';
-                break;
+            if (direction !== 'left') nextDirection = 'right';
+            break;
             case 'Escape':
                 onPause();
               //  console.log(event.key)
@@ -206,7 +209,6 @@ setInterval(() => {
 },200);
 */
 document.addEventListener('keydown',handleKeyPress);
-document.addEventListener('onclick',handleKeyPress);
 
 function increaseSpeed()
 {
@@ -270,11 +272,12 @@ function checkCollision()
 
     function stopGame()
     {
-clearInterval(gameInterval);
+
 gameStarted=false;
 instructionText.textContent="Press Spacebar To Start The Game";
 instructionText.style.display="block";
 logo.style.display="block";
+clearInterval(gameInterval);
     }
 
     function updateHighScore()
