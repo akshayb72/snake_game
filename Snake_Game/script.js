@@ -17,7 +17,6 @@ let snake = [{x:10,y:10}];
 //let snake = [{x:arbitrary_int(min,max),y:arbitrary_int(min,max)}];// use arbitrary location later using random
 //let food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
 let direction = 'right';
-let nextDirection = direction;
 //
 let nextDirection = direction;
 let food = generateFood();
@@ -98,7 +97,7 @@ function generateFood()
 function moveSnake()
 {
     direction = nextDirection;
-   const head = {...snake[0]};
+    const head = {...snake[0]};
     
     switch (direction) {
         case 'up':
@@ -160,55 +159,51 @@ gameInterval = setInterval(() => {
 function handleKeyPress(event)
 {
     if(!gameStarted && instructionText.textContent==="Paused" && event.code === 'Space')
-
-
+    
     {
         startGame();
     }
-
-
     else if((!gameStarted && event.code === 'Space')||(!gameStarted && event.key === ' '))
     {
         startGame();
-        console.log(gameSpeedDelay);
+        //console.log(gameSpeedDelay);
     }
     else
     {
         switch (event.key) {
             case 'ArrowUp':
-            if (direction !== 'down')
-            { 
-              nextDirection = 'up';
-            }
-            break;
-            case 'ArrowDown':
-            if (direction !== 'up') 
-            {
-              nextDirection = 'down';
-            }
-            break;
-            case 'ArrowLeft':
-            if (direction !== 'right') 
-            {
-              nextDirection = 'left';
-            }
-            break;
-            case 'ArrowRight':
-            if (direction !== 'left') 
-            {
-              nextDirection = 'right';
-            }
-            break;
-
+                if (direction !== 'down')
+                { 
+                  nextDirection = 'up';
+                }
+                break;
+                case 'ArrowDown':
+                if (direction !== 'up') 
+                {
+                  nextDirection = 'down';
+                }
+                break;
+                case 'ArrowLeft':
+                if (direction !== 'right') 
+                {
+                  nextDirection = 'left';
+                }
+                break;
+                case 'ArrowRight':
+                if (direction !== 'left') 
+                {
+                  nextDirection = 'right';
+                }
+                break;
             case 'Escape':
-            onPause();
-                reak;
+                onPause();
+              //  console.log(event.key)
+                break;
 
         }
     }
 
 //console.log(event);
-
 }
 /*
 document.getElementById('pause').onclick = function()
@@ -216,9 +211,7 @@ document.getElementById('pause').onclick = function()
     onPause();
 }
 
-}
-/*
-
+*/
 //Testing
 //draw();
 /*
@@ -279,7 +272,7 @@ function checkCollision()
         gameSpeedDelay=200;
         updateScore();
         clearInterval(gameInterval);
-        console.log(gameInterval);
+        //console.log(gameInterval);
     }
 
     function updateScore()
