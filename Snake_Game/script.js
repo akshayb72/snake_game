@@ -10,6 +10,7 @@ let gameStarted= false;
 const instructionText = document.getElementById('instruction-text');
 const logo = document.getElementById('logo');
 const score = document.getElementById('score');
+
 //const max_food =10;
 //const min_food = 21;
 let snake = [{x:10,y:10}];
@@ -18,6 +19,7 @@ let snake = [{x:10,y:10}];
 let direction = 'right';
 let nextDirection = direction;
 //
+let nextDirection = direction;
 let food = generateFood();
 //Define html variables
 //console.log(snake,food);
@@ -96,7 +98,8 @@ function generateFood()
 function moveSnake()
 {
     direction = nextDirection;
-    const head = {...snake[0]};
+   const head = {...snake[0]};
+    
     switch (direction) {
         case 'up':
             head.y--;
@@ -157,10 +160,13 @@ gameInterval = setInterval(() => {
 function handleKeyPress(event)
 {
     if(!gameStarted && instructionText.textContent==="Paused" && event.code === 'Space')
-    
+
+
     {
         startGame();
     }
+
+
     else if((!gameStarted && event.code === 'Space')||(!gameStarted && event.key === ' '))
     {
         startGame();
@@ -170,26 +176,39 @@ function handleKeyPress(event)
     {
         switch (event.key) {
             case 'ArrowUp':
-            if (direction !== 'down') nextDirection = 'up';
+            if (direction !== 'down')
+            { 
+              nextDirection = 'up';
+            }
             break;
             case 'ArrowDown':
-            if (direction !== 'up') nextDirection = 'down';
+            if (direction !== 'up') 
+            {
+              nextDirection = 'down';
+            }
             break;
             case 'ArrowLeft':
-            if (direction !== 'right') nextDirection = 'left';
+            if (direction !== 'right') 
+            {
+              nextDirection = 'left';
+            }
             break;
             case 'ArrowRight':
-            if (direction !== 'left') nextDirection = 'right';
+            if (direction !== 'left') 
+            {
+              nextDirection = 'right';
+            }
             break;
-                   case 'Escape':
-                onPause();
-              //  console.log(event.key)
-                break;
+
+            case 'Escape':
+            onPause();
+                reak;
 
         }
     }
 
 //console.log(event);
+
 }
 /*
 document.getElementById('pause').onclick = function()
@@ -197,7 +216,9 @@ document.getElementById('pause').onclick = function()
     onPause();
 }
 
-*/
+}
+/*
+
 //Testing
 //draw();
 /*
