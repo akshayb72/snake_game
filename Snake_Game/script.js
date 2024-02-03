@@ -16,6 +16,7 @@ let snake = [{x:10,y:10}];
 //let snake = [{x:arbitrary_int(min,max),y:arbitrary_int(min,max)}];// use arbitrary location later using random
 //let food = {x:arbitrary_int(min,max),y:arbitrary_int(min,max)};
 let direction = 'right';
+let nextDirection = direction;
 //
 let food = generateFood();
 //Define html variables
