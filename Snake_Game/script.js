@@ -143,6 +143,7 @@ gameSpeedDelay =200;
 gameStarted=true; // keep track to see if the game is running
 instructionText.style.display = 'none'; 
 logo.style.display = 'none';
+clearInterval(gameInterval);
 
 gameInterval = setInterval(() => {
     moveSnake();
